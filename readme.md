@@ -1,1 +1,1 @@
-# good luck → Thanks!
+# good luck → Thanks! :thumbsup:
