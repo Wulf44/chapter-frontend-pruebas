@@ -1,1 +1,1 @@
-# good luck
+# good luck → Thanks!
