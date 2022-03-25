@@ -1,9 +1,20 @@
 import React, { Component } from 'react'
-import { Image, Text, StyleSheet, View } from 'react-native'
+import { Image, StyleSheet, View } from 'react-native'
+import { Text } from '../../Themed';
+import { IconButton } from '../../StyledIconButton';
+
 
 export default class Character extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isEditable: false
+        }
+    }
+
     render() {
-        const { character }  = this.props;
+        const { character } = this.props;
+        const { isEditable } = this.state;
         const { body, image, title } = character;
         return (
             <View style={styles.container}>
@@ -13,9 +24,19 @@ export default class Character extends Component {
                         uri: image,
                     }}
                 />
-                <View style={{ flexDirection: 'column' }}>
-                <Text style={styles.textFields}>{title}</Text>
-                <Text style={styles.textFields}>{body}</Text>
+                <View style={styles.textContainer}>
+                    <Text style={styles.textFields} lightColor="white" darkColor='white'>{title}</Text>
+                    {isEditable && <Text style={styles.textFields} lightColor="white" darkColor='white'>{body}</Text>}
+                    {!isEditable && <View style={styles.buttonContainer}>
+                        <IconButton name="pencil"
+                            size={30}
+                            color="red"
+                        />
+                        <IconButton name="trash"
+                            size={30}
+                            color="red"
+                        />
+                    </View>}
                 </View>
             </View>
         )
@@ -24,9 +45,15 @@ export default class Character extends Component {
 
 const styles = StyleSheet.create({
     tinyLogo: {
-        width: 200,
-        height: 200,
+        height: 400
     },
-    container:{ flex: 1, backgroundColor: '#fafafa', margin: 4 },
-    textFields:{ color: 'black', height: 36 }
+    buttonContainer: {
+        display: 'flex',
+        flexDirection: 'row',
+        flex: 1,
+        justifyContent: 'space-between'
+    },
+    container: {  backgroundColor: 'black', margin: 16, padding: 8, width: 300 },
+    textContainer: { flexDirection: 'column' },
+    textFields: { height: 36 }
 })
