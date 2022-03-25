@@ -4,5 +4,6 @@ export default React.createContext({
   characters: [],
   addCharacter : (character) => {},
   setCharacters : (characters) => {},
-  deleteCharacter : (characterId) => {}
+  searchCharacters : (onSucces, title) => {},
+  deleteCharacter : (onSuccess, characterId) => {}
 });

@@ -3,6 +3,7 @@ import { FlatList } from 'react-native'
 import Character from './character'
 import Context from '../../context/context';
 
+
 export default class Index extends Component {
 
     static contextType = Context;
@@ -13,7 +14,8 @@ export default class Index extends Component {
     }
 
     renderItem({item}: any) {
-        return <Character character={item} />
+        const { refreshList } : any = this.props;
+        return <Character character={item} refreshList={refreshList} />
     }
 
     render() {

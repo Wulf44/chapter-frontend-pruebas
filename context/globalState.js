@@ -1,4 +1,5 @@
 import React from 'react';
+import { deleteMarvelCharacterByID, getMarvelCharacterByTitle } from '../api';
 import Context from './context';
 
 export default class GlobalState extends React.Component{
@@ -10,12 +11,17 @@ addCharacter = (Character) => {
   const list = [...this.state.characters, Character];
   this.setState({characters: list});
 };
- setCharacters = (characters) => {
+
+setCharacters = (characters) => {
   this.setState({characters});
 };
+
+searchCharacters = (onSuccess, title) => {
+  getMarvelCharacterByTitle(onSuccess,() =>{}, title);
+};
  
-deleteCharacter = (characterId) => {
-  this.setState(this.state.characters.splice(characterId,1));
+deleteCharacter = (onSucces, characterId) => {
+  deleteMarvelCharacterByID(onSucces, () => {}, characterId);
 };
 
 render(){
@@ -25,7 +31,8 @@ render(){
     characters: this.state.characters,
     addCharacter: this.addCharacter,
     deleteCharacter: this.deleteCharacter,
-    setCharacters: this.setCharacters
+    setCharacters: this.setCharacters,
+    searchCharacters: this.searchCharacters,
    }}
   >
    {this.props.children}

@@ -3,7 +3,9 @@
  * https://docs.expo.io/guides/color-schemes/
  */
 
-import { Text as DefaultText, View as DefaultView } from 'react-native';
+import { FontAwesome } from '@expo/vector-icons';
+import { IconProps } from '@expo/vector-icons/build/createIconSet';
+import { Text as DefaultText, View as DefaultView, TouchableOpacity as DefaultTouchableOpacity } from 'react-native';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
@@ -29,7 +31,11 @@ type ThemeProps = {
 
 export type TextProps = ThemeProps & DefaultText['props'];
 export type ViewProps = ThemeProps & DefaultView['props'];
-export type IconBtnProps = ThemeProps & DefaultView['props'];
+export type IconBtnProps = ThemeProps & {
+  name: React.ComponentProps<typeof FontAwesome>['name'];
+  color: string;
+  size: number | string;
+} & DefaultTouchableOpacity['props'];
 
 export function Text(props: TextProps) {
   const { style, lightColor, darkColor, ...otherProps } = props;

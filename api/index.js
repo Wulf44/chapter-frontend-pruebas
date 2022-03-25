@@ -1,4 +1,4 @@
-import {GET_CHARACTERS_BY_AUTHOR_URL, GET_CHARACTERS_BY_CHARACTER_URL} from './urls';
+import {AUTHOR_ID, GET_CHARACTERS_BY_AUTHOR_URL, GET_CHARACTERS_BY_CHARACTER_URL, MARVEL_URL} from './urls';
 
 async function getMarvelCharacter(onSuccessCallback, onErrorCallback) {
     fetch(GET_CHARACTERS_BY_AUTHOR_URL)
@@ -14,4 +14,11 @@ async function getMarvelCharacterByTitle(onSuccessCallback, onErrorCallback, tit
     .catch(onErrorCallback);
 }
 
-export { getMarvelCharacter, getMarvelCharacterByTitle }
+async function deleteMarvelCharacterByID(onSuccessCallback, onErrorCallback, id) {
+    fetch(`${MARVEL_URL}/${id}?idAuthor=${AUTHOR_ID}`, { method: 'DELETE'})
+    .then(response => response.json())
+    .then(onSuccessCallback)
+    .catch(onErrorCallback);
+}
+
+export { getMarvelCharacter, getMarvelCharacterByTitle, deleteMarvelCharacterByID }
