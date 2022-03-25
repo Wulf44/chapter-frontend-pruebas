@@ -1,0 +1,26 @@
+<h2>Lista de Personajes</h2>
+
+<div>
+    <div style="display: flex">  
+      <input type="text" #titulo /> 
+      <button (click)="getPersonajeInicial(titulo.value)">Buscar</button>
+    </div>
+    <br />
+</div>
+
+<table>
+    <tr *ngFor="let personaje of personajes">
+      <label>{{ personaje.title }}</label>
+      <div style="display: flex">  
+        <input type="text" #nombre /> 
+        <input type="text" #descripcion /> 
+        <input type="text" #imagen /> 
+        <button (click)="AddPersonajeInicial(nombre.value, descripcion.value, imagen.value)">Nuevo</button>
+        <button (click)="UpdatePersonajeInicial(personaje._id, nombre.value, descripcion.value, imagen.value)">Editar</button>
+    </div>
+      <img src="{{ personaje.image }}">     
+    </tr>   
+    <button (click)="DeletePersonajeInicial(titulo.value)">Eliminar</button>
+</table>
+
+
