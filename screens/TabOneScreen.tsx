@@ -1,62 +1,40 @@
-import { useEffect, useContext, useState } from 'react';
-import { Button, ScrollView, StyleSheet } from 'react-native';
-import { getDigimonPaginated } from '../api';
+import { useEffect, useContext } from 'react';
+import { Button, StyleSheet } from 'react-native';
+import { getMarvelCharacter } from '../api';
 
 import { Text, View } from '../components/Themed';
 import { RootTabScreenProps } from '../types';
 import Context from '../context/context';
-import Digimons from '../components/digimons';
-
+import Characters from '../components/characters';
+import { mainTitle } from '../res/strings';
 
 export default function TabOneScreen({ navigation }: RootTabScreenProps<'TabOne'>) {
   const context = useContext(Context);
-  const [pageCurrent, setpageCurrent] = useState(1);
 
   useEffect (() => {
-    getDigimonPaginated((data: any) => {
-      context.setDigimons(data);
-    }, () => {}, 2, pageCurrent);
+    getMarvelCharacter((data: any) => {
+      context.setCharacters(data);
+    }, () => {});
     return () => {}
-}, [pageCurrent])
+}, [])
 
-  const handlePreviousPage = () => {
-    console.log("previous page clicked", pageCurrent)
-    // Do this so your page can't go negative
-    setpageCurrent(pageCurrent - 1<1?1:pageCurrent - 1)
-  }
-
-  const handleNextPage = () => {
-    console.log("next page clicked", pageCurrent)
-    setpageCurrent(pageCurrent + 1)   
-  }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Digimons</Text>
-      {context && context.digimons && context.digimons.length > 0 && <Digimons />}
-      <View style={{ flexDirection: 'row', justifyContent: 'space-around', backgroundColor: 'white', margin: 24, width: '100%' }}>
-        <Button
-          onPress={handlePreviousPage}
-          title="Previous"
-          color="#841584"
-          accessibilityLabel="previous"
-        />
-        <Button
-          onPress={handleNextPage}
-          title="Next"
-          color="#841584"
-          accessibilityLabel="next"
-        />
-      </View>
+      <Text style={styles.title}>{mainTitle}</Text>
+      {context && context.characters && context.characters.length > 0 && <Characters />}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-start',
+    margin: 24,
+    padding: 24,
   },
   title: {
     fontSize: 20,

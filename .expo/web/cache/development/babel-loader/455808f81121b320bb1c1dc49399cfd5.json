@@ -1,0 +1,1 @@
+{"ast":null,"code":"export var mainTitle = 'Lista de personajes';","map":{"version":3,"sources":["/Users/davidproano/Documents/Projects/chapter-frontend-pruebas/res/strings.ts"],"names":["mainTitle"],"mappings":"AAAA,OAAO,IAAMA,SAAkB,GAAG,qBAA3B","sourcesContent":["export const mainTitle : string = 'Lista de personajes';"]},"metadata":{},"sourceType":"module"}

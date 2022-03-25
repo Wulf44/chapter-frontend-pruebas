@@ -3,29 +3,29 @@ import Context from './context';
 
 export default class GlobalState extends React.Component{
 state = {
-  digimons: [],
+  characters: [],
 }
  
-addDigimon = (digimon) => {
-  const list = [...this.state.digimons, digimon];
-  this.setState({digimons: list});
+addCharacter = (Character) => {
+  const list = [...this.state.characters, Character];
+  this.setState({characters: list});
 };
- setDigimons = (digimons) => {
-  this.setState({digimons});
+ setCharacters = (characters) => {
+  this.setState({characters});
 };
  
-deleteDigimon = (digimonId) => {
-  this.setState(this.state.digimons.splice(digimonId,1));
+deleteCharacter = (characterId) => {
+  this.setState(this.state.characters.splice(characterId,1));
 };
 
 render(){
  return (
   <Context.Provider 
    value={{
-    digimons: this.state.digimons,
-    addDigimon: this.addDigimon,
-    deleteDigimon: this.deleteDigimon,
-    setDigimons: this.setDigimons
+    characters: this.state.characters,
+    addCharacter: this.addCharacter,
+    deleteCharacter: this.deleteCharacter,
+    setCharacters: this.setCharacters
    }}
   >
    {this.props.children}
