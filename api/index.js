@@ -21,4 +21,11 @@ async function deleteMarvelCharacterByID(onSuccessCallback, onErrorCallback, id)
     .catch(onErrorCallback);
 }
 
-export { getMarvelCharacter, getMarvelCharacterByTitle, deleteMarvelCharacterByID }
+async function updateMarvelCharacterByID(onSuccessCallback, onErrorCallback, id, body) {
+    fetch(`${MARVEL_URL}/${id}?idAuthor=${AUTHOR_ID}`, { method: 'PUT', body})
+    .then(response => response.json())
+    .then(onSuccessCallback)
+    .catch(onErrorCallback);
+}
+
+export { getMarvelCharacter, getMarvelCharacterByTitle, deleteMarvelCharacterByID, updateMarvelCharacterByID }

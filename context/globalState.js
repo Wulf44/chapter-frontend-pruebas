@@ -1,5 +1,5 @@
 import React from 'react';
-import { deleteMarvelCharacterByID, getMarvelCharacterByTitle } from '../api';
+import { deleteMarvelCharacterByID, getMarvelCharacterByTitle, updateMarvelCharacterByID } from '../api';
 import Context from './context';
 
 export default class GlobalState extends React.Component{
@@ -23,6 +23,10 @@ searchCharacters = (onSuccess, title) => {
 deleteCharacter = (onSucces, characterId) => {
   deleteMarvelCharacterByID(onSucces, () => {}, characterId);
 };
+ 
+updateCharacter = (onSucces, characterId, body) => {
+  updateMarvelCharacterByID(onSucces, () => {}, characterId, body);
+};
 
 render(){
  return (
@@ -33,6 +37,7 @@ render(){
     deleteCharacter: this.deleteCharacter,
     setCharacters: this.setCharacters,
     searchCharacters: this.searchCharacters,
+    updateCharacter: this.updateCharacter,
    }}
   >
    {this.props.children}

@@ -1,5 +1,5 @@
 import { useEffect, useContext } from 'react';
-import { Alert, Button, StyleSheet } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { getMarvelCharacter } from '../api';
 
 import { Text, View } from '../components/Themed';
