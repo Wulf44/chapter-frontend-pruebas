@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="header">
+    <h1 class="title">Listado de personajes</h1>
+    <div class="search">
+      <input
+        ngDefaultControl
+        [(ngModel)]="searchHero"
+        class="search-hero"
+        placeholder="Buscar"
+      />
+      <button [routerLink]="'/create-marvel-hero'" class="add-button">
+        <i class="fas fa-plus"></i>
+        Nuevo
+      </button>
+    </div>
+  </div>
+  <div class="cards">
+    <app-card-marvel-hero
+      *ngFor="let card of cards$ | async | filterHeroes: searchHero"
+      [cardContent]="card"
+      (emitUpdateCards)="updateCards($event)"
+    >
+    </app-card-marvel-hero>
+  </div>
+</div>
